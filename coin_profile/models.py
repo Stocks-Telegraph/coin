@@ -14,7 +14,7 @@ class CoinProfile(models.Model):
     open_source = models.BooleanField()
     started_at = models.DateField(auto_now=True)
     development_status = models.CharField(max_length=200) 
-    hardware_wallet = models.CharField(max_length=200) 
+    hardware_wallet = models.BooleanField() 
     proof_type = models.CharField(max_length=200)
     org_structure = models.CharField(max_length=200)
     hash_algorithm = models.CharField(max_length=200)
