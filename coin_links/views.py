@@ -11,7 +11,6 @@ def social_links(request):
     return Response(serializer.data)
 
 
-
 @api_view(['GET'])
 def explosure_links(request):
     explosure_links = ExplosureLinks.objects.all()
