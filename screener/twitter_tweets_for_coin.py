@@ -3,7 +3,7 @@ from coin_twitter_tweets.models import TwitterTweets
 
 
 def twitter_tweets_for_coin():
-    ids = ['usdt-tether','btc-bitcoin']
+    ids = ['ada-cardano']
     for id in ids:
         url = f'https://api.coinpaprika.com/v1/coins/{id}/twitter'
         response = requests.get(url)
@@ -21,6 +21,5 @@ def twitter_tweets_for_coin():
             twitter_tweets_instance.status_id =twitter_response_data['status_id']
         
             twitter_tweets_instance.save()
-            break
-            
-twitter_tweets_for_coin()
+
+# twitter_tweets_for_coin()

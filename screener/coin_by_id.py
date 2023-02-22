@@ -1,15 +1,13 @@
 import requests
-import pandas as pd
 from coin_profile.models import CoinProfile
 
 def coin_by_id():
-    ids = ['usdt-tether']
+    ids = ['btc-bitcoin','eth-ethereum','bnb-binance-coin','ada-cardano']
     for id in ids:
         url = f'https://api.coinpaprika.com/v1/coins/{id}'
         response = requests.get(url)
         response_data = response.json()
-        
-           
+          
         coin = CoinProfile()
         coin.coin_id = response_data["id"]
         coin.name = response_data["name"]
@@ -28,7 +26,5 @@ def coin_by_id():
         coin.org_structure = response_data["org_structure"]
         coin.hash_algorithm = response_data["hash_algorithm"]
         coin.save()
-        break
-        
 
-coin_by_id()
+# coin_by_id()

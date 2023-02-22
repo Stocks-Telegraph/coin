@@ -15,7 +15,7 @@ class TwitterTweets(models.Model):
     
     
     def __str__(self):
-        return f'Username: {self.user_name}'
+        return f'{self.user_name}'
     
     class Meta:
         verbose_name_plural = "Twitter Tweets"
