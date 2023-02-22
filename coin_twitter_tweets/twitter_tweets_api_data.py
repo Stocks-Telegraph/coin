@@ -18,4 +18,4 @@ def twitter_tweets_api_data():
             twitter_tweets_instance.save()
             break
             
-twitter_tweets_api_data()
+# twitter_tweets_api_data()
