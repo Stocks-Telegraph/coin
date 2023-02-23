@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     
     'coin_links',
+    'coin_today_ohlc',
+    'ticker_for_specific_coin',
     'coin_profile',
     'coin_twitter_tweets',
     'screener',
