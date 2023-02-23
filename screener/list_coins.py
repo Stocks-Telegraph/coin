@@ -1,6 +1,5 @@
 import requests
 
-
 def list_coins():
     url = "https://api.coinpaprika.com/v1/coins"
     response = requests.get(url)
