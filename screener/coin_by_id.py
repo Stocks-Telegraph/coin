@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 
+
 def coin_by_id():
     ids = ["btc-bitcoin"]
     for id in ids:

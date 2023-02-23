@@ -1,5 +1,6 @@
 import requests
 
+
 def events_by_coin_id():
     ids = ["btc-bitcoin"]
     for coin_id in ids:
@@ -7,5 +8,6 @@ def events_by_coin_id():
         response = requests.get(url)
         response_data = response.json()
         # print(response_data)
+
 
 # events_by_coin_id()

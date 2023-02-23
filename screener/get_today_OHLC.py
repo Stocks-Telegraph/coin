@@ -1,5 +1,6 @@
 import requests
 
+
 def get_today_OHLC():
     ids = ["btc-bitcoin"]
     for coin_id in ids:

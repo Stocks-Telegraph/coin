@@ -32,5 +32,6 @@ class TickerForSpecificCoin(models.Model):
 
     def __str__(self):
         return self.coin_id
+
     class Meta:
         verbose_name_plural = "ticker for a specific coin"

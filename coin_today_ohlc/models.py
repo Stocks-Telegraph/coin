@@ -13,6 +13,6 @@ class Today_OHLC(models.Model):
 
     def __str__(self):
         return f"{self.time_open} - {self.time_close}"
-    
+
     class Meta:
         verbose_name_plural = "get_today_OHLC"
