@@ -1,6 +1,7 @@
 from screener.get_ticker_for_a_specific_coin import get_ticker_for_a_specific_coin
 from .models import TickerForSpecificCoin
-
+from datetime import datetime
+from dateutil.parser import isoparse
 
 def ticker_for_a_spec_coin():
     coin_data = get_ticker_for_a_specific_coin()
@@ -16,8 +17,13 @@ def ticker_for_a_spec_coin():
     specific_coin_instance.total_supply = coin_data.get("total_supply")
     specific_coin_instance.max_supply = coin_data.get("max_supply")
     specific_coin_instance.beta_value = coin_data.get("beta_value")
-    specific_coin_instance.first_data_at = coin_data.get("first_data_at")
-    specific_coin_instance.last_updated = coin_data.get("last_updated")
+
+    '''since api provide below to fields as a string so we have to convert
+    it to datetime fields '''
+    first_data_at_str = coin_data.get("first_data_at")   
+    last_updated_str = coin_data.get("last_updated")     
+    specific_coin_instance.first_data_at = isoparse(first_data_at_str)
+    specific_coin_instance.last_updated = isoparse(last_updated_str)
 
     specific_coin_instance.price = usd_data.get("price")
     specific_coin_instance.volume_24h = usd_data.get("volume_24h")
