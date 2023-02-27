@@ -12,6 +12,10 @@ class SocialLinks(models.Model):
         return f"Social links for {self.website}"
 
     class Meta:
+        """
+        A human-readable name for the object(s)
+        that will be used in the Django admin interface. 
+        """
         verbose_name_plural = "Social Links"
 
 

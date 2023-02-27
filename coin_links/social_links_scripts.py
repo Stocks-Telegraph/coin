@@ -3,6 +3,10 @@ from screener.coin_by_id import coin_by_id
 
 
 def social_links_scripts():
+    """
+    coin_by_id() is imported from screener. it contains data that has taken from dispatching API response,
+    Get that data here, format it accordingly and save it to db
+    """
     social_links_data = coin_by_id()
     links = social_links_data["links"]
 

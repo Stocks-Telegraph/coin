@@ -34,4 +34,8 @@ class TickerForSpecificCoin(models.Model):
         return self.coin_id
 
     class Meta:
+        """
+        Human-readable name for the object(s)
+        that will be used in the Django admin interface. 
+        """
         verbose_name_plural = "ticker for a specific coin"
