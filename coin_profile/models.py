@@ -23,4 +23,8 @@ class CoinProfile(models.Model):
         return self.name
 
     class Meta:
+        """
+        A human-readable name for the object(s)
+        that will be used in the Django admin interface. 
+        """
         verbose_name_plural = "Coin Profile"

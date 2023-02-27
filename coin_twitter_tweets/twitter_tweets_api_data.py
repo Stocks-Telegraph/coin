@@ -3,6 +3,10 @@ from screener.twitter_tweets_for_coin import twitter_tweets_for_coin
 
 
 def twitter_tweets_api_data():
+    """
+    twitter_tweets_api_data() is imported from screener. it contains data that has taken from dispatching API response,
+    Get that data here, format it accordingly and save it to db
+    """
     twitter_tweets_data = twitter_tweets_for_coin()
 
     for twitter_response_data in twitter_tweets_data:

@@ -3,6 +3,10 @@ from screener.coin_by_id import coin_by_id
 
 
 def coin_profile_api_data():
+    """
+    coin_by_id() is imported from screener. it contains data that has taken from dispatching API response,
+    Get that data here, format it accordingly and save it to db
+    """
     coin_profile_data = coin_by_id()
 
     coin = CoinProfile()

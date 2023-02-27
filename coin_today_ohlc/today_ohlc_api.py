@@ -3,6 +3,10 @@ from .models import Today_OHLC
 
 
 def today_ohlc_api():
+    """
+    get_today_OHLC() is imported from screener. it contains data that has taken from dispatching API response,
+    Get that data here, format it accordingly and save it to db
+    """
     today_ohlc_api_response_data = get_today_OHLC()
 
     for today_ohlc_api_data in today_ohlc_api_response_data:

@@ -4,6 +4,11 @@ from datetime import datetime
 from dateutil.parser import isoparse
 
 def ticker_for_a_spec_coin():
+    """
+    get_ticker_for_a_specific_coin() is imported from screener.
+    it contains data that has taken from dispatching API response,
+    Get that data here, format it accordingly and save it to db
+    """
     coin_data = get_ticker_for_a_specific_coin()
     usd_data = coin_data.get("quotes", {}).get("USD", {})
 
@@ -18,8 +23,8 @@ def ticker_for_a_spec_coin():
     specific_coin_instance.max_supply = coin_data.get("max_supply")
     specific_coin_instance.beta_value = coin_data.get("beta_value")
 
-    '''since api provide below to fields as a string so we have to convert
-    it to datetime fields '''
+    """since api provide below to fields as a string so we have to convert
+    it to datetime fields """
     first_data_at_str = coin_data.get("first_data_at")   
     last_updated_str = coin_data.get("last_updated")     
     specific_coin_instance.first_data_at = isoparse(first_data_at_str)
