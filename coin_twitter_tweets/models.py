@@ -1,7 +1,9 @@
 from django.db import models
+from coin_profile.models import CoinProfile
 
 # Create your models here.
 class TwitterTweets(models.Model):
+    symbol = models.ForeignKey(CoinProfile, to_field='symbol', on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
     user_name = models.CharField(max_length=120)
     user_image_link = models.CharField(max_length=120)

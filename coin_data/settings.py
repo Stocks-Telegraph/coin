@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-maq-!9d_9o-lxq=n#id2m7x(fdqq&9+fux_0_^13j^w5c#w68s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -82,7 +82,14 @@ WSGI_APPLICATION = 'coin_data.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = get_database_dict()
+# DATABASES = get_database_dict()
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation

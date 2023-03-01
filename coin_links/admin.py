@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import ExplosureLinks, SocialLinks
+from .models import ExplorerLinks, SocialLinks
 
 # Register your models here.
 class SocialLinksAdmin(admin.ModelAdmin):
     list_per_page = 12
 
 
-class ExplosureLinksAdmin(admin.ModelAdmin):
+class ExplorerLinksAdmin(admin.ModelAdmin):
     list_per_page = 12
 
 
 admin.site.register(SocialLinks, SocialLinksAdmin)
-admin.site.register(ExplosureLinks, ExplosureLinksAdmin)
+admin.site.register(ExplorerLinks, ExplorerLinksAdmin)

@@ -5,4 +5,5 @@ from .models import Today_OHLC
 class Today_OHLCSerializer(serializers.ModelSerializer):
     class Meta:
         model = Today_OHLC
-        fields = "__all__"
+        exclude = ['id']
+        # fields = "__all__"

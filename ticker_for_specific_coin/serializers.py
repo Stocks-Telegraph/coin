@@ -5,4 +5,5 @@ from .models import TickerForSpecificCoin
 class TickerForSpecificCoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = TickerForSpecificCoin
-        fields = "__all__"
+        # fields = "__all__"
+        exclude = ['id']

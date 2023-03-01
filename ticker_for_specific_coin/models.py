@@ -1,10 +1,10 @@
 from django.db import models
-
+from coin_profile.models import CoinProfile
 # Create your models here.
 class TickerForSpecificCoin(models.Model):
     coin_id = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
-    symbol = models.CharField(max_length=20)
+    symbol = models.ForeignKey(CoinProfile, to_field='symbol', on_delete=models.CASCADE)
     rank = models.IntegerField()
     circulating_supply = models.IntegerField()
     total_supply = models.IntegerField(null=True)
