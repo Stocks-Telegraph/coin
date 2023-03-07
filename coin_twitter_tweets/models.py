@@ -16,7 +16,7 @@ class TwitterTweets(models.Model):
     youtube_link = models.CharField(max_length=120, null=True)
 
     def __str__(self):
-        return f"{self.user_name}"
+        return self.symbol.symbol
 
     class Meta:
-        verbose_name_plural = "Twitter Tweets"
+        verbose_name_plural = "Twitter-tweets-regarding-a-coin"

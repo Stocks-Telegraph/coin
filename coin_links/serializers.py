@@ -9,14 +9,15 @@ class SocialLinksSerializer(serializers.ModelSerializer):
 
     The special string value '__all__' will include all fields.
     """
+
     class Meta:
         model = SocialLinks
-        exclude = ['id']
+        exclude = ["id"]
         # fields = "__all__"
 
 
 class ExplorerLinksSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExplorerLinks
-        exclude = ['id']
+        exclude = ["id"]
         # fields = "__all__"

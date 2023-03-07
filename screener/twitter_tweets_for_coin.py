@@ -1,6 +1,5 @@
 import requests
-from coin_twitter_tweets.models import TwitterTweets
-
+from coin_profile.models import CoinProfile
 def twitter_tweets_for_coin():
     """
     Retrieve Twitter data for a specific cryptocurrency.
@@ -10,7 +9,8 @@ def twitter_tweets_for_coin():
     Returns:
         dict: A dictionary containing the Twitter data for the specified cryptocurrency.
     """
-    ids = ["btc-bitcoin"]
+    # ids = CoinProfile.objects.values_list('coin_id', flat=True)
+    ids = ["eth-ethereum"]
     for id in ids:
         url = f"https://api.coinpaprika.com/v1/coins/{id}/twitter"
         response = requests.get(url)

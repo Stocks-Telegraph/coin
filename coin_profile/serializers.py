@@ -9,6 +9,7 @@ class CoinProfileSerializer(serializers.ModelSerializer):
 
     The special string value '__all__' will include all fields.
     """
+
     class Meta:
         model = CoinProfile
         fields = "__all__"

@@ -9,25 +9,14 @@ def coin_profile_api_data():
     coins_data = coin_by_id()
 
     for coin_data in coins_data:
-        coin = CoinProfile()
-        coin.coin_id = coin_data["id"]
-        coin.name = coin_data["name"]
-        coin.symbol = coin_data["symbol"]
-        coin.rank = coin_data["rank"]
-        coin.is_new = coin_data["is_new"]
-        coin.is_active = coin_data["is_active"]
-        coin.type = coin_data["type"]
-        coin.description = coin_data["description"]
-        coin.message = coin_data["message"]
-        coin.open_source = coin_data["open_source"]
-        coin.started_at = coin_data["started_at"]
-        coin.development_status = coin_data["development_status"]
-        coin.hardware_wallet = coin_data["hardware_wallet"]
-        coin.proof_type = coin_data["proof_type"]
-        coin.org_structure = coin_data["org_structure"]
-        coin.hash_algorithm = coin_data["hash_algorithm"]
+        symbol = coin_data.get("symbol")
+        coin_profile = CoinProfile.objects.get(pk=symbol)
 
-        try:
-            coin.save()
-        except Exception as e:
-            print(f"Error saving {coin.name}: {str(e)}")
+        coin_profile.is_active = coin_data["is_active"]
+        coin_profile.type = coin_data["type"]
+        coin_profile.description = coin_data["description"]
+        coin_profile.started_at = coin_data["started_at"]
+        coin_profile.proof_type = coin_data["proof_type"]
+        coin_profile.org_structure = coin_data["org_structure"]
+        coin_profile.hash_algorithm = coin_data["hash_algorithm"]
+        coin_profile.save()

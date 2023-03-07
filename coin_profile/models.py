@@ -5,16 +5,16 @@ class CoinProfile(models.Model):
     coin_id = models.CharField(max_length=20, null=True)
     name = models.CharField(max_length=200)
     symbol = models.CharField(max_length=200, primary_key=True, unique=True)
-    rank = models.IntegerField()
-    is_new = models.BooleanField()
-    is_active = models.BooleanField()
+    # rank = models.IntegerField(null=True)
+    # is_new = models.BooleanField(null=True)
+    is_active = models.BooleanField(null=True)
     type = models.CharField(max_length=200)
     description = models.CharField(max_length=500)
-    message = models.CharField(max_length=200, null=True)
-    open_source = models.BooleanField()
+    # message = models.CharField(max_length=200, null=True)
+    # open_source = models.BooleanField(null=True)
     started_at = models.DateField(auto_now=True)
-    development_status = models.CharField(max_length=200, null=True)
-    hardware_wallet = models.BooleanField()
+    # development_status = models.CharField(max_length=200, null=True)
+    # hardware_wallet = models.BooleanField(null=True)
     proof_type = models.CharField(max_length=200)
     org_structure = models.CharField(max_length=200, null=True)
     hash_algorithm = models.CharField(max_length=200, null=True)
@@ -25,6 +25,7 @@ class CoinProfile(models.Model):
     class Meta:
         """
         A human-readable name for the object(s)
-        that will be used in the Django admin interface. 
+        that will be used in the Django admin interface.
         """
-        verbose_name_plural = "Coin Profile"
+
+        verbose_name_plural = "Coin-Profile(all-coins)"
