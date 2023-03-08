@@ -3,8 +3,6 @@ from dateutil.parser import isoparse
 
 from .models import TickerForSpecificCoin
 from coin_profile.models import CoinProfile
-from screener.fmp_for_a_coin import fmp_for_a_coin
-from screener.get_ticker_for_a_specific_coin import get_ticker_for_a_specific_coin
 
 from coin_profile.models import CoinProfile
 from helper import call_api

@@ -10,6 +10,7 @@ def coinpaprika_social_links():
     for id in ids:
         print(id)
         url = f"https://api.coinpaprika.com/v1/coins/{id}"
+        print(url)
         response_data = call_api(url)
         if "links" in response_data:
             links = response_data["links"]
