@@ -1,10 +1,10 @@
-from .fmp_coin import fmp_api_coin
 import re
 from coin_profile.models import CoinProfile
-
+from helper import call_api
 
 def fmp_all_coins():
-    response_data = fmp_api_coin()
+    url = "https://financialmodelingprep.com/api/v3/quotes/crypto?apikey=76b77192c1a4d71a0ac45394989d009e"
+    response_data = call_api(url)
     all_coins = []
     
     for coin in response_data:

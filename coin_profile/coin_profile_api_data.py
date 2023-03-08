@@ -1,11 +1,11 @@
 from .models import CoinProfile
 from screener.coin_by_id import coin_by_id
 
+from helper import call_api
+
 
 def coin_profile_api_data():
-    """
-    Retrieves data for a set of cryptocurrencies, formats it, and saves it to the database.
-    """
+
     coins_data = coin_by_id()
 
     for coin_data in coins_data:

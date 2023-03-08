@@ -3,14 +3,8 @@ from .models import ExplorerLinks
 
 from screener.coinpaprika_explorer_links import coinpaprika_explorer_links
 
-
 def explorer_links_scripts():
-    """
-    coin_by_id() is imported from screener. it contains data that has taken from dispatching API response,
-    Get that data here, format it accordingly and save it to db
-    """
     coins_explorer_links = coinpaprika_explorer_links()
-    print(coins_explorer_links)
     for coin_data in coins_explorer_links:
         coin_name = coin_data["id"]
         all_explorer_links = coin_data["explorer_links"]
