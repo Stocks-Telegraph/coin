@@ -11,7 +11,7 @@ class TickerForSpecificCoin(models.Model):
     beta_value = models.FloatField(null=True)
     first_data_at = models.DateTimeField(null=True)
     last_updated = models.DateTimeField(null=True)
-    price = models.BigIntegerField() #Take This From Fmp
+    price = models.BigIntegerField(null=True) #Take This From Fmp
     volume_24h = models.BigIntegerField(null=True)
     volume_24h_change_24h = models.FloatField(null=True)
     market_cap = models.FloatField(null=True)

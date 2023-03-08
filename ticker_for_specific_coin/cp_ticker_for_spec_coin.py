@@ -13,6 +13,7 @@ api_key = os.environ.get('API_KEY')
 def cp_ticker_for_spec_coin():
     ids = CoinProfile.objects.values_list('coin_id', flat=True)[30:100]
     for coin_id in ids:
+        coin_profile = CoinProfile.objects.get(coin_id=coin_id)
         url = f"https://api.coinpaprika.com/v1/tickers/{coin_id}"
         response_data = call_api(url)
         print(response_data)
@@ -21,10 +22,10 @@ def cp_ticker_for_spec_coin():
             usd_data = response_data.get("market_data", {}).get("current_price", {}).get("usd", {})
 
             specific_coin_instance, created = TickerForSpecificCoin.objects.get_or_create(
-            symbol=response_data.get('id'),
+            symbol=coin_profile,
             defaults={
-                'coin_id': response_data.get("id"),
-                'name': response_data.get("name"),
+                # 'coin_id': response_data.get("id"),
+                # 'name': response_data.get("name"),
                 'circulating_supply': response_data.get("circulating_supply"),
                 'total_supply': response_data.get("total_supply"),
                 'max_supply': response_data.get("max_supply"),
@@ -34,9 +35,9 @@ def cp_ticker_for_spec_coin():
                 'volume_24h': usd_data.get("total_volume"),
                 'volume_24h_change_24h': usd_data.get("volume_change_percentage_24h"),
                 'market_cap_change_24h': usd_data.get("market_cap_change_percentage_24h"),
-                'ath_price': usd_data.get("ath"),
-                'ath_date': isoparse(response_data.get("ath_date")),
-                'percent_from_price_ath': usd_data.get("ath_change_percentage")
+                # 'ath_price': usd_data.get("ath"),
+                # 'ath_date': isoparse(response_data.get("ath_date")),
+                # 'percent_from_price_ath': usd_data.get("ath_change_percentage")
             }
         )
  
