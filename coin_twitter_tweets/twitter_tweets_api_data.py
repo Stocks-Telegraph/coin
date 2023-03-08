@@ -1,43 +1,39 @@
 from .models import TwitterTweets
-from screener.twitter_tweets_for_coin import twitter_tweets_for_coin
 from coin_profile.models import CoinProfile
 
+from helper import call_api
 
 def twitter_tweets_api_data():
-    """
-    twitter_tweets_api_data() is imported from screener. it contains data that has taken from dispatching API response,
-    Get that data here, format it accordingly and save it to db
-    """
-    twitter_tweets_data = twitter_tweets_for_coin()
-    if not twitter_tweets_data:
-        pass
+    ids = CoinProfile.objects.values_list('coin_id', flat=True)[:20]
+    for coin_id in ids:
+        url = f"https://api.coinpaprika.com/v1/coins/{coin_id}/twitter"
+        response_data = call_api(url)
+        print('response', response_data)
+        if response_data is not None:
+            print(response_data)
+            for twitter_response_data in response_data:  
+                try:
+                    # coin_profile = CoinProfile.objects.get(symbol=id)
+                    # print('Coin-Profile',coin_profile)
+                    twitter_tweets_instance, created = TwitterTweets.objects.update_or_create(
+                        symbol=coin_id,
+                        date=twitter_response_data["date"],
+                        user_name=twitter_response_data["user_name"],
+                        user_image_link=twitter_response_data["user_image_link"],
+                        status=twitter_response_data["status"],
+                        is_retweet=twitter_response_data["is_retweet"],
+                        retweet_count=twitter_response_data["retweet_count"],
+                        like_count=twitter_response_data["like_count"],
+                        status_id=twitter_response_data["status_id"],
+                    )
+                except CoinProfile.DoesNotExist:
+                    continue
 
-    for twitter_response_data in twitter_tweets_data:
-        print(twitter_response_data)
-        symbol = twitter_response_data.get("symbol")
-        if not symbol:
-            continue
-        print(f"Symbol = {symbol}")
-        try:
-            coin_profile = CoinProfile.objects.get(symbol=symbol)
-        except CoinProfile.DoesNotExist:
-            continue
 
-        twitter_tweets_instance = TwitterTweets()
-        twitter_tweets_instance.symbol = coin_profile
-        twitter_tweets_instance.date = twitter_response_data["date"]
-        twitter_tweets_instance.user_name = twitter_response_data["user_name"]
-        twitter_tweets_instance.user_image_link = twitter_response_data[
-            "user_image_link"
-        ]
-        twitter_tweets_instance.status = twitter_response_data["status"]
-        twitter_tweets_instance.is_retweet = twitter_response_data["is_retweet"]
-        twitter_tweets_instance.retweet_count = twitter_response_data["retweet_count"]
-        twitter_tweets_instance.like_count = twitter_response_data["like_count"]
-        twitter_tweets_instance.status_id = twitter_response_data["status_id"]
-
-        twitter_tweets_instance.save()
-        # break
+        else:
+            pass
+          
+        
 
 
 twitter_tweets_api_data()
