@@ -9,9 +9,8 @@ from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def cp_ticker_for_spec_coin():
-    ids = CoinProfile.objects.values_list('coin_id', flat=True)[30:100]
+    ids = CoinProfile.objects.values_list('coin_id', flat=True)[100:130]
     for coin_id in ids:
-        coin_profile = CoinProfile.objects.get(coin_id=coin_id)
         url = f"https://api.coinpaprika.com/v1/tickers/{coin_id}"
         response_data = call_api(url)
         print(response_data)
@@ -30,7 +29,7 @@ def cp_ticker_for_spec_coin():
                 'market_cap_change_24h': usd_data.get("market_cap_change_percentage_24h"),
             }
             specific_coin_instance, created = TickerForSpecificCoin.objects.update_or_create(
-                symbol=coin_profile,
+                symbol=coin_id,
                 defaults=defaults,
             )
  

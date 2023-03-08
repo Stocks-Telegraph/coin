@@ -9,8 +9,7 @@ from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def ticker_for_a_spec_coin():
-    # Get ticker data from FMP API
-    symbols = CoinProfile.objects.values_list('symbol', flat=True)[30:100]
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)[70:120]
     for symbol in symbols:
         url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
         response_data = call_api(url)

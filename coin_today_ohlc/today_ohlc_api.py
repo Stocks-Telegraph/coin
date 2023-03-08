@@ -2,21 +2,20 @@
 from .models import Today_OHLC
 from screener.fmp_for_a_coin import fmp_for_a_coin
 from coin_profile.models import CoinProfile
-
+import os
+from coin_profile.models import CoinProfile
+from helper import call_api
+api_key = os.environ.get('API_KEY')
 
 def today_ohlc_api():
-    """Get Any Crytpo's Today Data"""
-    response_data = fmp_for_a_coin()
-    print(response_data)
-    if response_data:
-        for coin_data in response_data:
-            for coin_today_data in coin_data:
-                
-
-                # Get the CoinProfile instance for the symbol
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)[45:55]
+    for symbol in symbols:
+        url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
+        response_data = call_api(url)
+        if response_data:
+            for coin_today_data in response_data:
                 symbol = coin_today_data.get("symbol")
                 coin_profile = CoinProfile.objects.get(pk=symbol)
-
                 today_ohlc_instance, created = Today_OHLC.objects.update_or_create(
                     symbol=coin_profile,
                     defaults={
@@ -28,7 +27,7 @@ def today_ohlc_api():
                         "market_cap": coin_today_data.get("marketCap"),
                     }
                 )
-                
+                    
                 # today_ohlc_instance.time_open = coin_today_data.get("open")
                 # today_ohlc_instance.time_close = coin_today_data.get("previousClose")
                 # today_ohlc_instance.open = today_ohlc_api_data["open"]
