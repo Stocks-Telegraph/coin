@@ -5,7 +5,7 @@ from helper import call_api
 
 def coinpaprika_explorer_links():
     # ids = ["eth-ethereum"]
-    ids = CoinProfile.objects.values_list('coin_id', flat=True)[40:60]
+    ids = CoinProfile.objects.values_list('coin_id', flat=True)[70:90]
     coins_data = []
     for id in ids:
         url = f"https://api.coinpaprika.com/v1/coins/{id}"
