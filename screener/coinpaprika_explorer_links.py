@@ -1,16 +1,7 @@
 import requests
 from coin_profile.models import CoinProfile
 
-def coin_by_id():
-    """
-    Retrieve information about a specific cryptocurrency.
-
-    Uses CoinPaprika API to retrieve information about a specific
-    cryptocurrency, identified by its `id`.
-
-    Returns:
-        dict: A dictionary containing information about the specified cryptocurrency.
-    """
+def coinpaprika_explorer_links():
     # ids = ["eth-ethereum"]
     ids = CoinProfile.objects.values_list('symbol', flat=True)[:100]
     coins_data = []
@@ -29,5 +20,4 @@ def coin_by_id():
                     if iid:
                         coins_data.append({"id": iid, "explorer_links": explorer_links})
     return coins_data
-                    
-# coin_by_id()
+

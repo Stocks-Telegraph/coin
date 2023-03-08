@@ -1,3 +1,4 @@
+import os
 from dateutil.parser import isoparse
 
 from .models import TickerForSpecificCoin
@@ -5,32 +6,39 @@ from coin_profile.models import CoinProfile
 from screener.fmp_for_a_coin import fmp_for_a_coin
 from screener.get_ticker_for_a_specific_coin import get_ticker_for_a_specific_coin
 
+from coin_profile.models import CoinProfile
+from helper import call_api
+api_key = os.environ.get('API_KEY')
 
 def ticker_for_a_spec_coin():
     # Get ticker data from FMP API
     response_data = fmp_for_a_coin()
-    if response_data:
-        for fmp_response in response_data:
-            for crypto_data_fmp in fmp_response:
-                symbol = crypto_data_fmp.get('symbol')
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)[30:100]
+    for symbol in symbols:
+        url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
+        response_data = call_api(url)
+        if response_data:
+            for fmp_coin_response in response_data:
+                symbol = fmp_coin_response.get('symbol')
+                print('Symbol:- ', symbol)
                 coin_profile = CoinProfile.objects.get(symbol=symbol)
-                
                 #this part of data is coming from Fmp api
                 specific_coin_instance, created = TickerForSpecificCoin.objects.get_or_create(
                     symbol=coin_profile,
                     defaults={
-                        'price': crypto_data_fmp.get("price"),
-                        'change_percentage': crypto_data_fmp.get("changesPercentage"),
-                        'market_cap': crypto_data_fmp.get("marketCap"),
-                        'year_high': crypto_data_fmp.get("yearHigh"),
-                        'year_low': crypto_data_fmp.get("yearLow")
+                        'price': fmp_coin_response.get("price"),
+                        'change_percentage': fmp_coin_response.get("changesPercentage"),
+                        'market_cap': fmp_coin_response.get("marketCap"),
+                        'year_high': fmp_coin_response.get("yearHigh"),
+                        'year_low': fmp_coin_response.get("yearLow")
                     }
                 )
 
 
-    #this part of data is comming from coin-paprika
-    # Get ticker data from CoinGecko API
-    # coin_data = get_ticker_for_a_specific_coin()
+    # this part of data is comming from coin-paprika
+    # Get ticker data from Coinpaprika API
+    coin_data = get_ticker_for_a_specific_coin()
+    print('Con_data', coin_data.get('id'))
     # usd_data = coin_data.get("market_data", {}).get("current_price", {}).get("usd", {})
 
     # specific_coin_instance, created = TickerForSpecificCoin.objects.get_or_create(

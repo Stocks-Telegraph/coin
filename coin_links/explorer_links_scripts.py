@@ -1,7 +1,7 @@
-from .models import ExplorerLinks
 from coin_profile.models import CoinProfile
+from .models import ExplorerLinks
 
-from screener.coin_by_id import coin_by_id
+from screener.coinpaprika_explorer_links import coinpaprika_explorer_links
 
 
 def explorer_links_scripts():
@@ -9,54 +9,21 @@ def explorer_links_scripts():
     coin_by_id() is imported from screener. it contains data that has taken from dispatching API response,
     Get that data here, format it accordingly and save it to db
     """
-
-    explorer_links = coin_by_id()
-    if not explorer_links:
-        pass
-
-    for explorer_links_data in explorer_links:
-        if ("links" not in explorer_links_data):  # Check if there are links for Coin or not
-            continue
-        links = explorer_links_data["links"]
-
-        if "explorer" not in links:
-            continue
-        links_inside_explorer = links["explorer"]
-
-        explosure_link_data_dicionary = {
-            "explorer_link_1": links_inside_explorer[0]
-            if len(links_inside_explorer) > 0
-            else None,  # return None if length is smaller than 0.
-            "explorer_link_2": links_inside_explorer[1]
-            if len(links_inside_explorer) > 1
-            else None,
-            "explorer_link_3": links_inside_explorer[2]
-            if len(links_inside_explorer) > 2
-            else None,
-            "explorer_link_4": links_inside_explorer[3]
-            if len(links_inside_explorer) > 3
-            else None,
+    coins_explorer_links = coinpaprika_explorer_links()
+    print(coins_explorer_links)
+    for coin_data in coins_explorer_links:
+        coin_name = coin_data["id"]
+        all_explorer_links = coin_data["explorer_links"]
+        explorure_link_dicionary = {
+            "explorer_link_1": all_explorer_links[0] if len(all_explorer_links) > 0 else None,
+            "explorer_link_2": all_explorer_links[1] if len(all_explorer_links) > 1 else None,
+            "explorer_link_3": all_explorer_links[2] if len(all_explorer_links) > 2 else None,
+            "explorer_link_4": all_explorer_links[3] if len(all_explorer_links) > 3 else None,
         }
-        # Get the relative coin id
-        symbol = explorer_links_data.get("symbol")
-        coin_profile = CoinProfile.objects.get(pk=symbol)
-
-        explosure_link_instance, created = ExplorerLinks.objects.get_or_create(
-            symbol=coin_profile
+        coin_profile = CoinProfile.objects.get(coin_id=coin_name)
+        ExplorerLinks.objects.update_or_create(
+            symbol=coin_profile,
+            defaults=explorure_link_dicionary,
         )
-        explosure_link_instance.explorer_link_1 = explosure_link_data_dicionary[
-            "explorer_link_1"
-        ]
-        explosure_link_instance.explorer_link_2 = explosure_link_data_dicionary[
-            "explorer_link_2"
-        ]
-        explosure_link_instance.explorer_link_3 = explosure_link_data_dicionary[
-            "explorer_link_3"
-        ]
-        explosure_link_instance.explorer_link_4 = explosure_link_data_dicionary[
-            "explorer_link_4"
-        ]
-        explosure_link_instance.save()
 
-
-explorer_links_scripts()
+# explorer_links_scripts()
