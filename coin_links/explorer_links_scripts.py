@@ -1,7 +1,7 @@
 from coin_profile.models import CoinProfile
 from .models import ExplorerLinks
 
-from screener.coinpaprika_explorer_links import coinpaprika_explorer_links
+from .api_scripts.coinpaprika_explorer_links import coinpaprika_explorer_links
 
 def explorer_links_scripts():
     coins_explorer_links = coinpaprika_explorer_links()
@@ -22,6 +22,6 @@ def explorer_links_scripts():
             )
             
         except:
-            print(coin_name,'Cant foind')
+            pass
 
 # explorer_links_scripts()
