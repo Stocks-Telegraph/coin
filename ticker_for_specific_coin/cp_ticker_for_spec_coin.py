@@ -3,13 +3,13 @@ from dateutil.parser import isoparse
 
 from .models import TickerForSpecificCoin
 from coin_profile.models import CoinProfile
-
 from coin_profile.models import CoinProfile
+
 from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def cp_ticker_for_spec_coin():
-    ids = CoinProfile.objects.values_list('coin_id', flat=True)[100:130]
+    ids = CoinProfile.objects.values_list('coin_id', flat=True)[70:100]
     for coin_id in ids:
         url = f"https://api.coinpaprika.com/v1/tickers/{coin_id}"
         response_data = call_api(url)
@@ -26,8 +26,9 @@ def cp_ticker_for_spec_coin():
                 'volume_24h_change_24h': usd_data.get("volume_change_percentage_24h"),
                 'market_cap_change_24h': usd_data.get("market_cap_change_percentage_24h"),
             }
+            coin_profile = CoinProfile.objects.get(coin_id=coin_id)
             specific_coin_instance, created = TickerForSpecificCoin.objects.update_or_create(
-                symbol=coin_id,
+                symbol=coin_profile,
                 defaults=defaults,
             )
  

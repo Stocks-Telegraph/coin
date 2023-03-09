@@ -5,7 +5,7 @@ from .serializers import TickerForSpecificCoinSerializer
 from rest_framework import status
 
 @api_view(["GET"])
-def ticker_specific_coin(request):
+def data_of_crypto(request):
     symbol = request.GET.get('symbol').upper()
     ticker_specific_coin_data = TickerForSpecificCoin.objects.filter(symbol__symbol=symbol)
     if not ticker_specific_coin_data.exists():

@@ -5,7 +5,7 @@ from .serializers import CoinProfileSerializer
 from rest_framework import status
 
 @api_view(["GET"])
-def coin_profile_list(request):
+def coin_profile(request):
     symbol = request.GET.get('symbol').upper()
     coin_profiles = CoinProfile.objects.filter(symbol=symbol)
     if not coin_profiles.exists():
