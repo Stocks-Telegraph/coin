@@ -1,6 +1,5 @@
 from django.db import models
 from coin_profile.models import CoinProfile
-
 # Create your models here
 class SocialLinks(models.Model):
     symbol = models.ForeignKey(CoinProfile, to_field="symbol", on_delete=models.CASCADE)
