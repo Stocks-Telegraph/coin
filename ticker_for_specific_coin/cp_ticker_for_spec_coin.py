@@ -13,7 +13,6 @@ def cp_ticker_for_spec_coin():
     for coin_id in ids:
         url = f"https://api.coinpaprika.com/v1/tickers/{coin_id}"
         response_data = call_api(url)
-        print(response_data)
         if response_data is not None:
             # for fmp_coin_response in response_data:
             usd_data = response_data.get("market_data", {}).get("current_price", {}).get("usd", {})

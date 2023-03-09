@@ -1,9 +1,7 @@
-# from screener.get_today_OHLC import get_today_OHLC
-from .models import Today_OHLC
-from screener.fmp_for_a_coin import fmp_for_a_coin
-from coin_profile.models import CoinProfile
 import os
+from .models import Today_OHLC
 from coin_profile.models import CoinProfile
+
 from helper import call_api
 api_key = os.environ.get('API_KEY')
 
