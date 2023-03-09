@@ -20,7 +20,6 @@ def explorer_links_scripts():
                 symbol=coin_profile,
                 defaults=explorure_link_dicionary,
             )
-            
         except:
             pass
 

@@ -20,7 +20,6 @@ def social_links_scripts():
                         "youtube_link": all_social_links.get("youtube", [None])[0]
                     }
                 )
-            
             except:
                 pass
 

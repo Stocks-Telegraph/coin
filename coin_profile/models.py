@@ -9,7 +9,7 @@ class CoinProfile(models.Model):
     # is_new = models.BooleanField(null=True)
     is_active = models.BooleanField(null=True)
     type = models.CharField(max_length=200)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, null=True)
     # message = models.CharField(max_length=200, null=True)
     # open_source = models.BooleanField(null=True)
     started_at = models.DateField(auto_now=True)

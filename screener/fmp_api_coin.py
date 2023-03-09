@@ -27,4 +27,4 @@ def fmp_all_coins():
             coin_profile.name = name
             coin_profile.coin_id = coin_ids
             coin_profile.save()
-    return all_coins
+    # return all_coins

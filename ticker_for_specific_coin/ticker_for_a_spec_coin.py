@@ -16,7 +16,6 @@ def ticker_for_a_spec_coin():
         if response_data:
             for fmp_coin_response in response_data:
                 symbol = fmp_coin_response.get('symbol')
-                print('Symbol:- ', symbol)
                 coin_profile = CoinProfile.objects.get(symbol=symbol)
                 #this part of data is coming from Fmp api
                 specific_coin_instance, created = TickerForSpecificCoin.objects.get_or_create(
