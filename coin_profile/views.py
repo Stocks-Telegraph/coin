@@ -4,10 +4,14 @@ from .models import CoinProfile
 from .serializers import CoinProfileSerializer
 from rest_framework import status
 
+
 @api_view(["GET"])
 def coin_profile(request):
-    symbol = request.GET.get('symbol').upper()
-    coin_profiles = CoinProfile.objects.filter(symbol=symbol)
+    symbol = request.GET.get("symbol", "").upper()
+    if symbol:
+        coin_profiles = CoinProfile.objects.filter(symbol=symbol)
+    else:
+        coin_profiles = CoinProfile.objects.all()
     if not coin_profiles.exists():
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = CoinProfileSerializer(coin_profiles, many=True)

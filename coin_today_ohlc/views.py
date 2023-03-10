@@ -7,8 +7,11 @@ from .serializers import Today_OHLCSerializer
 
 @api_view(["GET"])
 def today_OHLC_list(request):
-    symbol = request.GET.get("symbol").upper()
-    today_ohlc_data = Today_OHLC.objects.filter(symbol__symbol=symbol)
+    symbol = request.GET.get("symbol", "").upper()
+    if symbol:
+        today_ohlc_data = Today_OHLC.objects.filter(symbol__symbol=symbol)
+    else:
+        today_ohlc_data = Today_OHLC.objects.all()
     if not today_ohlc_data.exists():
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = Today_OHLCSerializer(today_ohlc_data, many=True)

@@ -31,6 +31,6 @@ def cp_ticker_for_spec_coin():
                 symbol=coin_profile,
                 defaults=defaults,
             )
- 
+
         else:
             pass
