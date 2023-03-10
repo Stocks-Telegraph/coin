@@ -28,25 +28,3 @@ def ticker_for_a_spec_coin():
                         'year_low': fmp_coin_response.get("yearLow")
                     }
                 )
-
-
-#post below from postman
-"""
-{
-    "symbol": "BTC",
-    "circulating_supply": 18500000,
-    "total_supply": 21000000,
-    "max_supply": 21000000,
-    "beta_value": 0.5,
-    "first_data_at": "2021-01-01T00:00:00Z",
-    "last_updated": "2021-03-10T10:00:00Z",
-    "price": 50000,
-    "volume_24h": 50000000000,
-    "volume_24h_change_24h": 1.2,
-    "market_cap": 925000000000,
-    "market_cap_change_24h": 0.8,
-    "change_percentage": 1.5,
-    "year_high": 65000,
-    "year_low": 30000
-}
-make sure to change symbol"""
