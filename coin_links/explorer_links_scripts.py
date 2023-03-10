@@ -9,17 +9,25 @@ def explorer_links_scripts():
         coin_name = coin_data["id"]
         try:
             all_explorer_links = coin_data["explorer_links"]
-            explorure_link_dicionary = {
-                "explorer_link_1": all_explorer_links[0] if len(all_explorer_links) > 0 else None,
-                "explorer_link_2": all_explorer_links[1] if len(all_explorer_links) > 1 else None,
-                "explorer_link_3": all_explorer_links[2] if len(all_explorer_links) > 2 else None,
-                "explorer_link_4": all_explorer_links[3] if len(all_explorer_links) > 3 else None,
-            }
+            print('Message:', all_explorer_links)
             coin_profile = CoinProfile.objects.get(coin_id=coin_name)
-            ExplorerLinks.objects.update_or_create(
-                symbol=coin_profile,
-                defaults=explorure_link_dicionary,
-            )
+            for explorer_link in all_explorer_links:
+                ExplorerLinks.objects.update_or_create(
+                    symbol=coin_profile,
+                    explorer_link=explorer_link,
+                )
+            # all_explorer_links = coin_data["explorer_links"]
+            # explorure_link_dicionary = {
+            #     "explorer_link_1": all_explorer_links[0] if len(all_explorer_links) > 0 else None,
+            #     "explorer_link_2": all_explorer_links[1] if len(all_explorer_links) > 1 else None,
+            #     "explorer_link_3": all_explorer_links[2] if len(all_explorer_links) > 2 else None,
+            #     "explorer_link_4": all_explorer_links[3] if len(all_explorer_links) > 3 else None,
+            # }
+            # coin_profile = CoinProfile.objects.get(coin_id=coin_name)
+            # ExplorerLinks.objects.update_or_create(
+            #     symbol=coin_profile,
+            #     defaults=explorure_link_dicionary,
+            # )
         except:
             pass
 

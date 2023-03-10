@@ -1,16 +1,16 @@
 from .models import CoinProfile
-
 from helper import call_api
 
 
 def coin_profile_api_data():
-    ids = CoinProfile.objects.order_by('-coin_id').values_list('coin_id', flat=True)[:40]
+    ids = CoinProfile.objects.order_by('-coin_id').values_list('coin_id', flat=True)[0:200]
     for id in ids:
         url = f"https://api.coinpaprika.com/v1/coins/{id}"
         coin_data = call_api(url)
         if coin_data is not None:
             symbol = coin_data.get("symbol")
             if symbol is not None:
+                print(symbol)
                 defaults = {
                     "is_active": coin_data["is_active"],
                     "type": coin_data["type"],
