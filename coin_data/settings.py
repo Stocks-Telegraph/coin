@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'coin_profile',
     'coin_twitter_tweets',
     'screener',
+    'performance',
 ]
 
 MIDDLEWARE = [
