@@ -8,6 +8,8 @@ class PerformanceChange(models.Model):
     quarterly_percentage_change = models.IntegerField(null=True)
     half_yearly_percentage_change = models.IntegerField(null=True)
     yearly_percentage_change = models.IntegerField(null=True)
+    year_to_date = models.IntegerField(null=True)
+    
     
     def __str__(self):
         return self.coin_profile.symbol
