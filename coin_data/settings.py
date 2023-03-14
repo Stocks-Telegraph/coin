@@ -117,6 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#job will run from monday to friday at 4pm(we can change according to our need).
+CRONJOBS = [    ('0 16 * * 1-5', 'performance.all_performance.all_performance')]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
