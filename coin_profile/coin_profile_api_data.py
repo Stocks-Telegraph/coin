@@ -3,7 +3,7 @@ from helper import call_api
 
 
 def coin_profile_api_data():
-    ids = CoinProfile.objects.order_by('-coin_id').values_list('coin_id', flat=True)[0:200]
+    ids = CoinProfile.objects.order_by('-coin_id').values_list('coin_id', flat=True)
     for id in ids:
         url = f"https://api.coinpaprika.com/v1/coins/{id}"
         coin_data = call_api(url)

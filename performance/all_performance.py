@@ -9,7 +9,7 @@ from helper import call_api
 API_KEY = os.environ.get('API_KEY')
 
 def all_performance():
-    symbols = CoinProfile.objects.values_list('symbol', flat=True)[330:390]    
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)  
     # symbols = ['ACTUSD']
     for symbol in symbols:
         url = f'https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}?apikey={API_KEY}'

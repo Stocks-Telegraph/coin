@@ -9,7 +9,7 @@ from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def cp_ticker_for_spec_coin():
-    ids = CoinProfile.objects.values_list('coin_id', flat=True)[70:100]
+    ids = CoinProfile.objects.values_list('coin_id', flat=True)
     for coin_id in ids:
         url = f"https://api.coinpaprika.com/v1/tickers/{coin_id}"
         response_data = call_api(url)
