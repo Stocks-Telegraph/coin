@@ -6,4 +6,3 @@ class Today_OHLCSerializer(serializers.ModelSerializer):
     class Meta:
         model = Today_OHLC
         exclude = ['id']
-        # fields = "__all__"
