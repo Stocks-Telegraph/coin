@@ -2,8 +2,6 @@ from django.db import models
 from coin_profile.models import CoinProfile
 # Create your models here.
 class TickerForSpecificCoin(models.Model):
-    # coin_id = models.CharField(max_length=100)
-    # name = models.CharField(max_length=100)
     symbol = models.ForeignKey(CoinProfile, to_field='symbol', on_delete=models.CASCADE)
     circulating_supply = models.IntegerField(null=True)
     total_supply = models.IntegerField(null=True)
@@ -13,7 +11,7 @@ class TickerForSpecificCoin(models.Model):
     last_updated = models.DateTimeField(null=True)
     price = models.BigIntegerField(null=True) #Take This From Fmp
     volume_24h = models.BigIntegerField(null=True)
-    volume_24h_change_24h = models.FloatField(null=True)
+    # volume_24h_change_24h = models.FloatField(null=True)
     market_cap = models.FloatField(null=True)
     market_cap_change_24h = models.FloatField(null=True)
     change_percentage = models.FloatField(null=True)
@@ -37,8 +35,4 @@ class TickerForSpecificCoin(models.Model):
 
 
     class Meta:
-        """
-        Human-readable name for the object(s)
-        that will be used in the Django admin interface. 
-        """
         verbose_name_plural = "ticker for a specific coin"

@@ -23,7 +23,7 @@ def cp_ticker_for_spec_coin():
                 'first_data_at': isoparse(response_data.get("first_data_at")),
                 'last_updated': isoparse(response_data.get("last_updated")),
                 'volume_24h': usd_data.get("total_volume"),
-                'volume_24h_change_24h': usd_data.get("volume_change_percentage_24h"),
+                # 'volume_24h_change_24h': usd_data.get("volume_change_percentage_24h"),
                 'market_cap_change_24h': usd_data.get("market_cap_change_percentage_24h"),
             }
             coin_profile = CoinProfile.objects.get(coin_id=coin_id)
