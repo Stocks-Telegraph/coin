@@ -10,7 +10,7 @@ class SocialLinks(models.Model):
     youtube_link = models.CharField(max_length=120, null=True)
 
     def __str__(self):
-        return f"Social links for {self.website}"
+        return f"Social links for {self.symbol.symbol}"
 
     class Meta:
         """

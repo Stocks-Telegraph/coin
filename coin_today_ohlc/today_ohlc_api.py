@@ -24,9 +24,10 @@ def today_ohlc_api():
                         "day_low": coin_today_data.get("dayLow"),
                         "year_high": coin_today_data.get("yearHigh"),
                         "year_low": coin_today_data.get("yearLow"),
-                        "open": coin_today_data.get("open"),
+                        # "open": coin_today_data.get("open"),
                         "volume": coin_today_data.get("volume"),
                         "market_cap": coin_today_data.get("marketCap"),
+                        # 'timestamp': coin_today_data.get("timestamp"),
                     }
                 )
 

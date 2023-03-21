@@ -12,7 +12,8 @@ class Today_OHLC(models.Model):
     year_low = models.FloatField(null=True)
     volume = models.IntegerField(null=True)
     market_cap = models.IntegerField(null=True)
-
+    # timestamp = models.IntegerField(null=True)
+    
     def __str__(self):
         return self.symbol.symbol
 
