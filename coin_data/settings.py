@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'coin_twitter_tweets',
     'screener',
     'performance',
+    'crypto_historical_data', 
 ]
 
 MIDDLEWARE = [
