@@ -3,7 +3,7 @@ from .models import CoinProfile
 
 # Register your models here.
 class CoinProfileAdmin(admin.ModelAdmin):
-    search_fields = ["symbol", "name"]
+    search_fields = ["symbol", "name","coin_id"]
     list_per_page = 12
 
 

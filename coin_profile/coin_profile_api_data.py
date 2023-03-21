@@ -1,7 +1,6 @@
 from .models import CoinProfile
 from helper import call_api
 
-
 def coin_profile_api_data():
     ids = CoinProfile.objects.order_by('-coin_id').values_list('coin_id', flat=True)
     for id in ids:
@@ -21,6 +20,6 @@ def coin_profile_api_data():
                     "hash_algorithm": coin_data["hash_algorithm"],
                 }
                 CoinProfile.objects.update_or_create(
-                    symbol=symbol,
+                    symbol=symbol+'USD',
                     defaults=defaults,
                 )
