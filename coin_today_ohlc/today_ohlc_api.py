@@ -6,7 +6,7 @@ from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def today_ohlc_api():
-    symbols = CoinProfile.objects.values_list('symbol', flat=True)[3000:]
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)
     for symbol in symbols:
         url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey=76b77192c1a4d71a0ac45394989d009e"
         response_data = call_api(url)
