@@ -13,18 +13,27 @@ def fmp_all_coins():
 
         # Use regular expressions to remove "USD" from symbol and name
         symbol = re.sub(r"USD", "", symbol)
-        name = re.sub(r"USD", "", name)
-
-        name = re.sub(r"\.", "", name)
-
+        if name:
+            name = re.sub(r"USD", "", name)
+            name = re.sub(r"\.", "", name)
+        else:
+            name=""
         coin_ids = f"{symbol.lower()}-{name.lower().replace(' ', '-')}"
         if coin_ids.endswith("-"):
             coin_ids = coin_ids[:-1] + ""
+
+        if CoinProfile.objects.filter(symbol=symbol + 'USD').exists():
+            continue
+
+        coin_profile, created = CoinProfile.objects.update_or_create(
+            coin_id=coin_ids,
+            defaults={
+                'symbol': symbol + 'USD',
+                'name': name
+            }
+        )
+
+        if created:
             all_coins.append(coin_ids)
 
-            coin_profile = CoinProfile()
-            coin_profile.symbol = symbol
-            coin_profile.name = name
-            coin_profile.coin_id = coin_ids
-            coin_profile.save()
-    # return all_coins
+    return all_coins
