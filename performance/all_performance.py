@@ -1,3 +1,4 @@
+import re
 import os
 import pandas as pd
 import pandasql as ps
@@ -9,11 +10,15 @@ from helper import call_api
 API_KEY = os.environ.get('API_KEY')
 
 def all_performance():
-    symbols = CoinProfile.objects.values_list('symbol', flat=True)  
-    # symbols = ['ACTUSD']
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)[3300:]
     for symbol in symbols:
         url = f'https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}?apikey={API_KEY}'
         crypto_historical_api_data = call_api(url)
+        # if crypto_historical_api_data is None and symbol.endswith('USD'):
+        #     symbol = re.sub(r"USD", "", symbol)
+        #     url = f'https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}?apikey={API_KEY}'
+        #     crypto_historical_api_data = call_api(url)
+            
         if crypto_historical_api_data is not None:
             try:
                 coin_symbol = CoinProfile.objects.get(symbol=symbol)
