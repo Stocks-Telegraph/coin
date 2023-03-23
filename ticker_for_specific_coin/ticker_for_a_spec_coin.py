@@ -1,14 +1,12 @@
 import os
-
 from .models import TickerForSpecificCoin
-from coin_profile.models import CoinProfile
 from coin_profile.models import CoinProfile
 
 from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def ticker_for_a_spec_coin():
-    symbols = CoinProfile.objects.values_list('symbol', flat=True)[3050:]
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)
     for symbol in symbols:
         url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
         response_data = call_api(url)
