@@ -7,6 +7,7 @@ from helper import call_api
 api_key = os.environ.get("API_KEY")
 
 def historical_data():
+    '''Run the Script , and it will save 2 years of data for each and every symbols.'''
     # symbols = CoinProfile.objects.values_list('symbol', flat=True)
     symbols = ["BTCUSD"]
     for symbol in symbols:
