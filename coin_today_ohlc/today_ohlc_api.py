@@ -6,7 +6,7 @@ from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def today_ohlc_api():
-    symbols = CoinProfile.objects.values_list('symbol', flat=True)
+    symbols = CoinProfile.objects.values_list('symbol', flat=True)[500:640]
     for symbol in symbols:
         url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey=76b77192c1a4d71a0ac45394989d009e"
         response_data = call_api(url)
@@ -24,11 +24,12 @@ def today_ohlc_api():
                         "day_low": coin_today_data.get("dayLow"),
                         "year_high": coin_today_data.get("yearHigh"),
                         "year_low": coin_today_data.get("yearLow"),
-                        # "open": coin_today_data.get("open"),
+                        "price_avg50": coin_today_data.get("priceAvg50"),
+                        "price_avg200": coin_today_data.get("priceAvg200"),
                         "volume": coin_today_data.get("volume"),
+                        "avg_volume": coin_today_data.get("avgVolume"),
                         "market_cap": coin_today_data.get("marketCap"),
                         # 'timestamp': coin_today_data.get("timestamp"),
                     }
                 )
 
-# today_ohlc_api()
