@@ -4,6 +4,13 @@ from .models import SocialLinks
 from .api_scripts.coinpaprika_social_links import coinpaprika_social_links
 
 def social_links_scripts():
+    """
+This function fetches the social media links for coins using the 'coinpaprika_social_links' 
+function from the 'api_scripts' module. It then updates or creates social media links for each coin 
+in the 'CoinProfile' model by creating or updating a corresponding 'SocialLinks' object. 
+
+"""
+
     social_links_response = coinpaprika_social_links()
     for all_links in social_links_response:
         coin_name = all_links["id"]

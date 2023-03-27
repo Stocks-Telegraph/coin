@@ -6,6 +6,12 @@ from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def ticker_for_a_spec_coin():
+    """
+Fetches ticker data for all coins in the database from the FMP API and updates or creates
+the corresponding TickerForSpecificCoin objects in the database.
+
+"""
+
     symbols = CoinProfile.objects.values_list('symbol', flat=True)
     for symbol in symbols:
         url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
@@ -13,7 +19,6 @@ def ticker_for_a_spec_coin():
         if response_data:
             for fmp_coin_response in response_data:
                 symbol = fmp_coin_response.get('symbol')
-                print(symbol)
                 coin_profile = CoinProfile.objects.get(symbol=symbol)
                 #this part of data is coming from Fmp api
                 defaults={
