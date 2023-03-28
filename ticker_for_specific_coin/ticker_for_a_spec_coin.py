@@ -1,13 +1,17 @@
 import os
-
 from .models import TickerForSpecificCoin
-from coin_profile.models import CoinProfile
 from coin_profile.models import CoinProfile
 
 from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def ticker_for_a_spec_coin():
+    """
+Fetches ticker data for all coins in the database from the FMP API and updates or creates
+the corresponding TickerForSpecificCoin objects in the database.
+
+"""
+
     symbols = CoinProfile.objects.values_list('symbol', flat=True)
     for symbol in symbols:
         url = f"https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={api_key}"
@@ -20,6 +24,7 @@ def ticker_for_a_spec_coin():
                 defaults={
                     'price': fmp_coin_response.get("price"),
                     'change_percentage': fmp_coin_response.get("changesPercentage"),
+                    'change': fmp_coin_response.get("change"),
                     'market_cap': fmp_coin_response.get("marketCap"),
                     'year_high': fmp_coin_response.get("yearHigh"),
                     'year_low': fmp_coin_response.get("yearLow")

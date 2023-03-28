@@ -9,6 +9,9 @@ from helper import call_api
 api_key = os.environ.get('API_KEY')
 
 def cp_ticker_for_spec_coin():
+    """This function cp_ticker_for_spec_coin retrieves ticker data for a specific coin from the CoinPaprika API 
+    and updates or creates an instance of the TickerForSpecificCoin model in the database.
+    """
     ids = CoinProfile.objects.values_list('coin_id', flat=True)
     for coin_id in ids:
         url = f"https://api.coinpaprika.com/v1/tickers/{coin_id}"

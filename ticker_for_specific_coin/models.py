@@ -15,6 +15,7 @@ class TickerForSpecificCoin(models.Model):
     market_cap = models.FloatField(null=True)
     market_cap_change_24h = models.FloatField(null=True)
     change_percentage = models.FloatField(null=True)
+    change = models.FloatField(null=True)
     # percent_change_15m = models.FloatField()
     # percent_change_30m = models.FloatField()
     # percent_change_1h = models.FloatField()

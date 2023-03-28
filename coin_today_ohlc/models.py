@@ -10,7 +10,10 @@ class Today_OHLC(models.Model):
     day_low = models.FloatField(null=True)
     year_high = models.FloatField(null=True)
     year_low = models.FloatField(null=True)
+    price_avg50 = models.FloatField(null=True)
+    price_avg200 = models.FloatField(null=True)
     volume = models.IntegerField(null=True)
+    avg_volume = models.IntegerField(null=True)
     market_cap = models.IntegerField(null=True)
     # timestamp = models.IntegerField(null=True)
     

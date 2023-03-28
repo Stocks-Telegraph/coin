@@ -10,4 +10,5 @@ urlpatterns = [
     path('api/',include('performance.urls')),
     path('api/',include('ticker_for_specific_coin.urls')),
     path('api/',include('api.urls'))
+    path('api/',include('crypto_historical_data.urls'))
 ]
