@@ -2,6 +2,16 @@ from .models import CoinProfile
 from helper import call_api
 
 def coin_profile_api_data():
+    """
+This function fetches coin profile data from the Coinpaprika API for all coins in the 'CoinProfile' model. 
+It makes use of the helper function 'call_api' to fetch data from the API endpoint.
+The function loops through all the coin IDs in the 'CoinProfile' model and retrieves their profile data from 
+the Coinpaprika API. The retrieved data is then used to update or create corresponding 'CoinProfile' objects 
+in the model. The function prints the symbol of each coin as it processes them.
+
+"""
+
+
     ids = CoinProfile.objects.order_by('-coin_id').values_list('coin_id', flat=True)
     for id in ids:
         url = f"https://api.coinpaprika.com/v1/coins/{id}"
